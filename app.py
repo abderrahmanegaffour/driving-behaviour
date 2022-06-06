@@ -189,13 +189,13 @@ if selected == "Driving behaviour":
      # Classification des conducteurs:
      ''')
 
-    st.sidebar.header("Les parametres d'entrée")
+    st.sidebar.header("Select classifier")
 
 
 
     def user_input():
-        #Tonnage = st.number_input('Insert Tonnage')
-        #st.write('Tonnage ', Tonnage)
+        Tonnage = st.number_input('',min_value=0,max_value=70)
+        st.write('Tonnage ', Tonnage)
         Distance = st.number_input('',key=1)
         st.write('Distance ', Distance)
         Fuel = st.number_input('',key=2)
@@ -208,7 +208,7 @@ if selected == "Driving behaviour":
         st.write('Moy vitesse ', Moy_sog)
         
 
-        Tonnage=st.sidebar.slider('Tonnage',min_value=0, max_value=70)
+        #Tonnage=st.sidebar.slider('Tonnage',min_value=0, max_value=70)
         #Distance=st.sidebar.slider('Distance',0.0,1000.0,200.0)
         #Fuel=st.sidebar.slider('Fuel',0.0,1000.0,200.0)
         #Moy_acc=st.sidebar.slider('Moy_acc',0.0,1.00,0.0)
@@ -235,7 +235,7 @@ if selected == "Driving behaviour":
     df=user_input()
 
     classifier_name = st.sidebar.selectbox(
-         'Select classifier',
+         '',
          ('DT','KNN', 'SVM', 'GB','EXDT','RF')
     )
 

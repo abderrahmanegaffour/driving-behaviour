@@ -30,7 +30,6 @@ from sklearn.ensemble import RandomForestClassifier
 from streamlit_option_menu import option_menu
 from sklearn.metrics import confusion_matrix, classification_report
 from sklearn import preprocessing
-from tkinter import *
 
 
 st.set_page_config(page_title='Driving behaivor',page_icon=':truck:')

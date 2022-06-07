@@ -37,6 +37,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 import pickle
 
+st.set_page_config(page_title='Driving behaivor',page_icon=':truck:')
+st.set_option('deprecation.showPyplotGlobalUse', False)
+
 LR_model=pickle.load(open(r'models\LR_model.pkl','rb'))
 DT_model=pickle.load(open(r'models\DT_model.pkl','rb'))
 EXDT_model=pickle.load(open(r'models\EXDT_model.pkl','rb'))

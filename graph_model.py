@@ -28,7 +28,7 @@ def haversine(lat1, lon1, lat2, lon2, to_radians=True, earth_radius=6371):
 
    # lire les données a partir de fichier dataset
 
-df = pd.read_csv('data/DATASET_ALL.csv' )
+df = pd.read_csv('DATASET_ALL.csv' )
 df.head()
     #df = df.drop(['Unnamed: 0.1'], axis=1)
     #effacer les ligne dupliquées

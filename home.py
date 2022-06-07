@@ -37,13 +37,13 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 import pickle
 
-LR_model=pickle.load(open(r'C:\Users\abdou\Desktop\web_app\models\LR_model.pkl','rb'))
-DT_model=pickle.load(open(r'C:\Users\abdou\Desktop\web_app\models\DT_model.pkl','rb'))
-EXDT_model=pickle.load(open(r'C:\Users\abdou\Desktop\web_app\models\EXDT_model.pkl','rb'))
-RF_model=pickle.load(open(r'C:\Users\abdou\Desktop\web_app\models\RF_model.pkl','rb'))
-SVM_model=pickle.load(open(r'C:\Users\abdou\Desktop\web_app\models\SVM_model.pkl','rb'))
-KNN_model=pickle.load(open(r'C:\Users\abdou\Desktop\web_app\models\KNN_model.pkl','rb'))
-GB_model=pickle.load(open(r'C:\Users\abdou\Desktop\web_app\models\GB_model.pkl','rb'))
+LR_model=pickle.load(open(r'models\LR_model.pkl','rb'))
+DT_model=pickle.load(open(r'models\DT_model.pkl','rb'))
+EXDT_model=pickle.load(open(r'models\EXDT_model.pkl','rb'))
+RF_model=pickle.load(open(r'models\RF_model.pkl','rb'))
+SVM_model=pickle.load(open(r'models\SVM_model.pkl','rb'))
+KNN_model=pickle.load(open(r'models\KNN_model.pkl','rb'))
+GB_model=pickle.load(open(r'models\GB_model.pkl','rb'))
 
 
 #fig=pickle.load(open('Graph_model.pkl','rb'))

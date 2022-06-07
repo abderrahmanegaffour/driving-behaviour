@@ -36,7 +36,7 @@ import pickle
 
 
 
-train_data = pd.read_csv(r'data\final_hl_dataset_all_eng.csv')
+train_data = pd.read_csv('data/final_hl_dataset_all_eng.csv')
 x = train_data.drop(columns=['N_Ordre','PSN','comportement de conduit','CHAUFFEUR'])
 y = train_data['comportement de conduit']
 

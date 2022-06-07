@@ -51,8 +51,6 @@ GB_model=pickle.load(open('GB_model.pkl','rb'))
 
 #fig=pickle.load(open('Graph_model.pkl','rb'))
 
-st.set_page_config(page_title='Driving behaivor',page_icon=':truck:')
-st.set_option('deprecation.showPyplotGlobalUse', False)
 
 with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)

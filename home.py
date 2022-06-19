@@ -1,4 +1,9 @@
 from urllib.parse import uses_relative
+from dataclasses import dataclass
+import requests
+import json
+import csv
+from pandas import json_normalize
 import numpy as np 
 import pandas as pd 
 import os
@@ -37,19 +42,20 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 import pickle
 
-LR_model=pickle.load(open('models\LR_model.pkl','rb'))
-DT_model=pickle.load(open('models\DT_model.pkl','rb'))
-EXDT_model=pickle.load(open('models\EXDT_model.pkl','rb'))
-RF_model=pickle.load(open('models\RF_model.pkl','rb'))
-SVM_model=pickle.load(open('models\SVM_model.pkl','rb'))
-KNN_model=pickle.load(open('models\KNN_model.pkl','rb'))
-GB_model=pickle.load(open('models\GB_model.pkl','rb'))
+st.set_page_config(page_title='Driving behaivor',page_icon=':truck:')
+st.set_option('deprecation.showPyplotGlobalUse', False)
+
+LR_model=pickle.load(open(r'models\LR_model.pkl','rb'))
+DT_model=pickle.load(open(r'models\DT_model.pkl','rb'))
+EXDT_model=pickle.load(open(r'models\EXDT_model.pkl','rb'))
+RF_model=pickle.load(open(r'models\RF_model.pkl','rb'))
+SVM_model=pickle.load(open(r'models\SVM_model.pkl','rb'))
+KNN_model=pickle.load(open(r'models\KNN_model.pkl','rb'))
+GB_model=pickle.load(open(r'models\GB_model.pkl','rb'))
 
 
 #fig=pickle.load(open('Graph_model.pkl','rb'))
 
-st.set_page_config(page_title='Driving behaivor',page_icon=':truck:')
-st.set_option('deprecation.showPyplotGlobalUse', False)
 
 with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
@@ -63,11 +69,12 @@ def streamlit_menu(example=1):
         # 2. horizontal menu w/o custom style
         selected = option_menu(
             menu_title=None,  # required
-            options=["Driving behaviour", "Graphs"],  # required
+            options=["Driving behaviour", "Graphs","Analyses"],  # required
             icons=["bi-truck", "bi-graph-up"],  # optional
             menu_icon="cast",  # optional
             default_index=0,  # optional
             orientation="horizontal",
+            key=0
         )
         return selected
     
@@ -85,7 +92,7 @@ if selected == "Graphs":
             ('A4BA0D33', '85BA0BED', 'A4BA0D85','A4BA0CF9','A4BA0DE7','85BA0BFC','A4BA0CAC','00BA06C9',
             '85BA0BF9','A4BA0CD6','04BB0703','00BA07E6','20BA08C6','20BA08FA','85BA0BF4','85BA0BD1',
             '85BA0BD7','A4BA0E48','04BB0607','A4BA0D07','04BC0D82','04BB06E5','85BA0BDF',
-            '85BA0BCF','04BB0454','85BA0BD9'))
+            '85BA0BCF','04BB0454','85BA0BD9'),key=1)
 
         st.write('You selected:', PSN)
 
@@ -96,102 +103,147 @@ if selected == "Graphs":
         return PSN
 
     def user_input_Date():
-        Date = st.date_input('',key=7)
+        Date = st.date_input('',key=2)
         st.write('Date ', Date),
         #time = st.time_input('Insert time of the trip')
         #st.write('time ', time),
 
         dataDate={'Date':Date.strftime('%Y-%m-%d')+'T00:00:00',
+                    'fin':Date.strftime('%Y-%m-%d')+'T23:59:59',
         }
         
         
         Date=dataDate.get('Date')
-        return Date
+        fin= dataDate.get('fin')
+        return Date,fin
         
     
-   
-    #foction de calcule de distances
+        #foction de calcule de distances
     def haversine(lat1, lon1, lat2, lon2, to_radians=True, earth_radius=6371):
-    #if to_radians:
-    #   lat1, lon1, lat2, lon2 = np.radians([lat1, lon1, lat2, lon2])
+        #if to_radians:
+        #   lat1, lon1, lat2, lon2 = np.radians([lat1, lon1, lat2, lon2])
 
         a = np.sin((lat2-lat1)/2.0)**2 + \
             np.cos(lat1) * np.cos(lat2) * np.sin((lon2-lon1)/2.0)**2
 
         return earth_radius * 2 * np.arcsin(np.sqrt(a))
 
-    # lire les données a partir de fichier dataset
-    df = pd.read_csv('data\DATASET_ALL.csv' )
-    df.head()
-    #df = df.drop(['Unnamed: 0.1'], axis=1)
-    #effacer les ligne dupliquées
-    df1 = df[['PSN','DATE_DE_DEPART','CHAUFFEUR']].drop_duplicates()
-    
-    a = 'A4BA0D85'
-    d='2021-01-07T00:00:00'
+   # lire les données a partir de fichier dataset
     b =user_input_Date()
     c= user_input_PSN()
-    print('value of c is',c)
-    print(b)
 
 
-    # rslt_1 = df.loc[df['PSN'] == user_input_PSN() ]
-    # rslt_2 = rslt_1.loc[rslt_1['DATE_DE_DEPART'] == b]
-    rslt_2= df.loc[(df["PSN"] == c) & (df["DATE_DE_DEPART"] == b)]
-    #drop rows inutiles (speed=0)
-    rslt_2.drop(rslt_2[rslt_2['SOG'] == 0].index, inplace = True)
+    df6 = pd.DataFrame(columns=['TIMESTAMP','ALT','LAT','LON' , 'SOG','DATE_DE_DEPART'])
 
-    #changemen de type de temp de string a datetime
-    rslt_2['TIMESTAMP'] =pd.to_datetime(rslt_2['TIMESTAMP'])
+    url = "https://idegps.com/mw/psn/"+c+"/record/16?key=nLsBvp0YedcXUcaU73fs&from_date="+b[0]+"&to_date="+b[1]
+    print("search by psn")
+    print(url)
+    response = requests.get(url)
+    response_json = response.json()
+    dictionary = json.dumps(response.json(), sort_keys = True, indent = 4)
+    df33 = pd.read_json(dictionary)    
+    if not df33.empty:        
+        df3 = df33.iloc[:, [25,0,11,12,22,1]].copy()
+        print(df3)
+    else:
+        print(url)
+        df3 = pd.DataFrame()
+    
+    df3.drop(df3[df3['SOG'] == 0].index, inplace = True)
 
-    #les operations nécéssaires
-    rslt_2['sog_dif'] = rslt_2['SOG'].diff().fillna(0)
-    # rslt_2['temps_dif'] = pd.Series(rslt_2['TIMESTAMP'].view('int64').diff().fillna(0).div(1e9))
+    df3['TIMESTAMP'] =pd.to_datetime(df3['TIMESTAMP'])
 
-    rslt_2['temps_dif'] = pd.Series(rslt_2['TIMESTAMP'].astype('int64').diff().fillna(0).div(1e9))
-    rslt_2['acceleration']=rslt_2['sog_dif']*0.28/rslt_2['temps_dif']
-    rslt_2['LAT_rad'], rslt_2['LON_rad'] = np.radians(rslt_2['LAT']), np.radians(rslt_2['LON'])
-    rslt_2['fuel_estim']= -0.00042379* pow(rslt_2['sog_dif'],2)+0.05886221*rslt_2['sog_dif']+0.88966832
-    rslt_2['dist'] = \
-        haversine(rslt_2.LAT_rad.shift(), rslt_2.LON_rad.shift(),
-                    rslt_2.loc[1:, 'LAT_rad'], rslt_2.loc[1:, 'LON_rad'])
+    df3['sog_dif'] = df3['SOG'].diff().fillna(0)
+    df3['temps_dif'] = pd.Series(df3['TIMESTAMP'].astype('int64').diff().fillna(0).div(1e9))
+    df3['acceleration']=df3['sog_dif']*0.28/df3['temps_dif']
+    df3['LAT_rad'], df3['LON_rad'] = np.radians(df3['LAT']), np.radians(df3['LON'])
+    df3['fuel_estim']= -0.00042379* pow(df3['sog_dif'],2)+0.05886221*df3['sog_dif']+0.88966832
+    df3['dist'] = \
+        haversine(df3.LAT_rad.shift(), df3.LON_rad.shift(),
+                 df3.loc[1:, 'LAT_rad'], df3.loc[1:, 'LON_rad'])
 
 
     conso=0
-    df4 = pd.DataFrame(columns=['fuel_estim','consomation','TIMESTAMP'])
-    for i,row in rslt_2.iterrows():
+    df7 = pd.DataFrame(columns=['fuel_estim','consomation'])
+    for i,row in df3.iterrows():
         conso=conso+row['fuel_estim']
         new_row1 = {'TIMESTAMP':row['TIMESTAMP'],'fuel_estim':row['fuel_estim'],'consomation':conso}
-        df4 = df4.append(new_row1, ignore_index = True)
+        df7 = df7.append(new_row1, ignore_index = True)
 
-
-    rslt_2['consomation']=df4['consomation']
-
-
-
-
-
-
-
+    df3['consomation']=df7['consomation']
+    moy_sog= df3['SOG'].mean()
+    moy_acc= df3['acceleration'].mean()
+    dist_estim=df3['dist'].sum()
+    fuel_estim=df3['fuel_estim'].sum()
     
-    # ici la figure
     plt.rcParams["figure.figsize"] = (20,10)
 
-    x1 = np.array(rslt_2.SOG)
-    y = np.array(rslt_2.TIMESTAMP)
-    plt.plot(y, x1, color='red', linestyle='--',label="vitesse")
+    x1 = np.array(df3.SOG)
 
-    x2 = np.array(rslt_2.acceleration*10)
-    plt.plot(y, x2, label="acceleration")
+    y = np.array(df3.TIMESTAMP)
+    plt.plot(y, x1, color='red', linestyle='--')
 
-    x3 = np.array(df4.consomation)
-    plt.plot(y, x3 ,color='green', linestyle='--', label="consommation")
+    x2 = np.array(df3.acceleration*10)
+    plt.plot(y, x2)
+    y = np.array(df3.TIMESTAMP)
+
+    x3 = np.array(df7.consomation)
+
+
+    plt.plot(y, x3 ,color='green', linestyle='--')
     plt.gca().legend(('vitesse','acceleration','consommation'))
 
     fig = plt.show()
 
     
     st.pyplot(fig)
+
+
+if selected == "Analyses":
+    st.title(f" {selected} des conducteurs:")
+    with open('style.css') as f:
+     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+     df4 = pd.read_csv('driver_analyses.csv', encoding='latin1' )
+     
+
+
+    def user_input_CHAUFFEUR():
+        #CHAUFFEUR = st.text_input('',placeholder='Entrer le nom du chaffeur',key=3)
+        CHAUFFEUR = st.selectbox(
+            'SELECT CHAUFFEUR',
+            ('KRABIA ISHAK', 'EZZINE AHMED', 'SENOUCI SID AHMED','TEFIANI KOUIDER','BENAISSA AZZEDDINE',
+            'TIDJINI KHELIFA','BENCHENI LAHCEN','KRIM AHMED','BELHADJ ALI','ABBOU ABD EL KADER','NOUALA MOKHTAR',
+            'BOUAMAMA AMINE','HANSALI MOHAMED','SAHRAOUI MUSTAPHA','MESTARI MOHAMED','TEFIANI MOHAMED',
+            'TEFIANI YOUCEF','GAILI SAID','OUZAA ALI','HAMRI ABD EL KADER','DJELLAL MOHAMED','HAMIANI TAIEB',
+            'NEHARI ABBES','KADDOURI BOUAZA','HAKEM LAKHDAR','BOUZIDI CHEIKH','BOUTAIBANE ABD EL KADER','ZIANE ABDELKADER',
+            'SENNOUR MOHAMED ABDENACEUR','MAAZOUZ ABD EL HAK','SAHOUADJ RACHID','CHERCHAB BENDIDA',
+            'LABOU HICHEM','TSAKI ABDERRAHMANE','BENIA MOHAMED OKACHA','HARCHI MUSTAPHA','RACHED BACHIR',
+            'TEBIB ADEM','BEN ADDA LYES','ABBAD DJELLOUL','BENHAMOU MOHAMED','ROZAL ALI','AOUED MEHADJI',
+            'LAREDJ BADER EDDINE',
+            ),key = 12)
+        
+
+        st.write('You selected:',CHAUFFEUR)
+
+        dataCHAUFFEUR={'CHAUFFEUR':CHAUFFEUR,
+        }
+
+        CHAUFFEUR=dataCHAUFFEUR.get('CHAUFFEUR')
+        return CHAUFFEUR
+    e=user_input_CHAUFFEUR()
+    a=df4.loc[df4['CHAUFFER']==e]
+    Tasks = [a['NORMAL CLASSE %'].item(),a['GOOD CLASSE %'].item(),a['BAD CLASSE %'].item(),a['BEST CLASSE %'].item()]
+    mylabels = ["normal", "good", "bad", "best"]
+    myexplode = [0.2, 0, 0.4,  0.1]
+
+    plt.pie(Tasks, labels = mylabels, explode = myexplode, shadow = True,autopct='%1.1f%%', textprops={'fontsize': 26})
+    plt.title(' CLASSES OF TRAJECTS')
+    plt.axis('equal')
+    fig = plt.show() 
+    st.pyplot(fig)
+
+
+
 
 
 if selected == "Driving behaviour":
@@ -207,17 +259,17 @@ if selected == "Driving behaviour":
 
 
     def user_input():
-        Tonnage = st.number_input('',min_value=0,max_value=70)
+        Tonnage = st.number_input('',min_value=0,max_value=70,key=4)
         st.write('Tonnage ', Tonnage)
-        Distance = st.number_input('',key=1)
+        Distance = st.number_input('',key=5)
         st.write('Distance ', Distance)
-        Fuel = st.number_input('',key=2)
+        Fuel = st.number_input('',key=6)
         st.write('Fuel', Fuel)
-        Moy_acc = st.number_input('',key=3)
+        Moy_acc = st.number_input('',key=7)
         st.write('Moy accélération  ', Moy_acc)
-        Moy_alt = st.number_input('',key=4)
+        Moy_alt = st.number_input('',key=8)
         st.write('Moy altitude ', Moy_alt)
-        Moy_sog = st.number_input('',key=5)
+        Moy_sog = st.number_input('',key=9)
         st.write('Moy vitesse ', Moy_sog)
         
 
@@ -257,7 +309,7 @@ if selected == "Driving behaviour":
 
     classifier_name = st.sidebar.selectbox(
          '',
-         ('DT','LR','KNN', 'SVM', 'GB','EXDT','RF')
+         ('DT','LR','KNN', 'SVM', 'GB','EXDT','RF'),key=10
     )
 
 
@@ -309,8 +361,6 @@ if selected == "Driving behaviour":
 
 css_example = '''                                                                                                                                                      
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-    <i class="fa-solid fa-truck" style="width:500px"></i>   
                                                                                                                                                                                                                                                                                    
     '''
     

@@ -223,7 +223,7 @@ if selected == "Analyses":
             ),key = 12)
         
 
-        st.write('You selected:',CHAUFFEUR)
+        st.write('Chauffeur choisi : ',CHAUFFEUR)
 
         dataCHAUFFEUR={'CHAUFFEUR':CHAUFFEUR,
         }
@@ -233,11 +233,12 @@ if selected == "Analyses":
     e=user_input_CHAUFFEUR()
     a=df4.loc[df4['CHAUFFER']==e]
     Tasks = [a['NORMAL CLASSE %'].item(),a['GOOD CLASSE %'].item(),a['BAD CLASSE %'].item(),a['BEST CLASSE %'].item()]
-    mylabels = ["Normal Behaiviour", "Good DBehaiviour", "Bad Behaiviour", "Best Behaiviour"]
+    mylabels = ["Normal Behaiviour", "Good Behaiviour", "Bad Behaiviour", "Best Behaiviour"]
     myexplode = [0.2, 0, 0.4,  0.1]
 
     plt.pie(Tasks, labels = mylabels, explode = myexplode, shadow = True,autopct='%1.1f%%', textprops={'fontsize': 18})
     plt.title('Relativistic circle des classes de traject :',fontsize=20)
+    print(5 * "\n")
     plt.axis('equal')
     fig = plt.show() 
     st.pyplot(fig)

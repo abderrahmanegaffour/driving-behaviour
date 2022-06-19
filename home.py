@@ -45,13 +45,13 @@ import pickle
 st.set_page_config(page_title='Driving behaivor',page_icon=':truck:')
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-LR_model=pickle.load(open(r'models\LR_model.pkl','rb'))
-DT_model=pickle.load(open(r'models\DT_model.pkl','rb'))
-EXDT_model=pickle.load(open(r'models\EXDT_model.pkl','rb'))
-RF_model=pickle.load(open(r'models\RF_model.pkl','rb'))
-SVM_model=pickle.load(open(r'models\SVM_model.pkl','rb'))
-KNN_model=pickle.load(open(r'models\KNN_model.pkl','rb'))
-GB_model=pickle.load(open(r'models\GB_model.pkl','rb'))
+LR_model=pickle.load(open('LR_model.pkl','rb'))
+DT_model=pickle.load(open('DT_model.pkl','rb'))
+EXDT_model=pickle.load(open('EXDT_model.pkl','rb'))
+RF_model=pickle.load(open('RF_model.pkl','rb'))
+SVM_model=pickle.load(open('SVM_model.pkl','rb'))
+KNN_model=pickle.load(open('KNN_model.pkl','rb'))
+GB_model=pickle.load(open('GB_model.pkl','rb'))
 
 
 #fig=pickle.load(open('Graph_model.pkl','rb'))

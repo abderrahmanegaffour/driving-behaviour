@@ -35,11 +35,42 @@ div.stNumberInput {
     background-color: #2696bd;
     color: white;
 }
- 
 
 .menu .nav-item .nav-link.active[data-v-4323f8ce] {
     background-color: #2696bd;
 }
 .menu .nav-item .nav-link.active[data-v-4323f8ce] {
     background-color: #2696bd;
+}
+
+.st-dt {
+    border-bottom-color: #2696bd;
+}
+
+.st-ds {
+    border-top-color: #2696bd;
+}
+
+.st-dr {
+    border-right-color: #2696bd;
+}
+
+.st-dq {
+    border-left-color: #2696bd;
+}
+
+.st-dt {
+    border-bottom-color: #2696bd;
+}
+
+.st-ds {
+    border-top-color: #2696bd;
+}
+
+.st-dr {
+    border-right-color: #2696bd;
+}
+
+.st-dq {
+    border-left-color: #2696bd;
 }

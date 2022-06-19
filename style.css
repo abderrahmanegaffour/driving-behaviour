@@ -1,3 +1,12 @@
+:root {
+    --primary-color: #2696bd;
+    --background-color: #ffffff;
+    --secondary-background-color: #f0f2f6;
+    --text-color: #31333F;
+    --font: "Source Sans Pro", sans-serif;
+}
+
+
 div.css-1hynsf2 {
     width: 320px;
 }
@@ -28,6 +37,9 @@ div.stNumberInput {
 }
  
 
+.menu .nav-item .nav-link.active[data-v-4323f8ce] {
+    background-color: #2696bd;
+}
 .menu .nav-item .nav-link.active[data-v-4323f8ce] {
     background-color: #2696bd;
 }

@@ -10,12 +10,24 @@ div.stNumberInput {
     font-size: 22px;
     text-align: center;
     overflow-x: auto;
-    background-color: #ff4b4b;
+    background-color: #2696bd;
     color: white;
     width: 550px;
 }
 .css-12i0ff:hover{
-    background-color: #ff4b4b;
+    background-color: #2696bd;
     color: white;
 }
+.css-1h3mxa0:hover{
+    background-color: #2696bd;
+    color: white;
+}
+.e1wbw4rs0:hover{
+    background-color: #2696bd;
+    color: white;
+}
+ 
 
+.menu .nav-item .nav-link.active[data-v-4323f8ce] {
+    background-color: #2696bd;
+}

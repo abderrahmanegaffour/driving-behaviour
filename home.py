@@ -236,7 +236,7 @@ if selected == "Analyses":
     mylabels = ["normal", "good", "bad", "best"]
     myexplode = [0.2, 0, 0.4,  0.1]
 
-    plt.pie(Tasks, labels = mylabels, explode = myexplode, shadow = True,autopct='%1.1f%%', textprops={'fontsize': 26})
+    plt.pie(Tasks, labels = mylabels, explode = myexplode, shadow = True,autopct='%1.1f%%', textprops={'fontsize': 20})
     plt.title(' CLASSES OF TRAJECTS')
     plt.axis('equal')
     fig = plt.show() 

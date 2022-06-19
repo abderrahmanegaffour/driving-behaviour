@@ -74,3 +74,13 @@ div.stNumberInput {
 .st-dq {
     border-left-color: #2696bd;
 }
+.st-g1::after {
+    background-color: #2696bd;
+}
+:root {
+    --primary-color: #2696bd;
+    --background-color: #ffffff;
+    --secondary-background-color: #f0f2f6;
+    --text-color: #31333F;
+    --font: "Source Sans Pro", sans-serif;
+}

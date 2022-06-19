@@ -266,7 +266,7 @@ if selected == "Driving behaviour":
         Fuel = st.number_input('',key=6)
         st.write('Fuel', Fuel)
         Moy_acc = st.number_input('',key=7)
-        st.write('Moy accélération  ', Moy_acc)
+        st.write('Moy accélération/décélération  ', Moy_acc)
         Moy_alt = st.number_input('',key=8)
         st.write('Moy altitude ', Moy_alt)
         Moy_sog = st.number_input('',key=9)

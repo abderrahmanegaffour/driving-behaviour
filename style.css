@@ -1,5 +1,5 @@
 :root {
-    --primary-color: #2696bd;
+    --primary-color: #ff4b4b;
     --background-color: #ffffff;
     --secondary-background-color: #f0f2f6;
     --text-color: #31333F;
@@ -19,66 +19,66 @@ div.stNumberInput {
     font-size: 22px;
     text-align: center;
     overflow-x: auto;
-    background-color: #2696bd;
+    background-color: #ff4b4b;
     color: white;
     width: 550px;
 }
 .css-12i0ff:hover{
-    background-color: #2696bd;
+    background-color: #ff4b4b;
     color: white;
 }
 .css-1h3mxa0:hover{
-    background-color: #2696bd;
+    background-color: #ff4b4b;
     color: white;
 }
 .e1wbw4rs0:hover{
-    background-color: #2696bd;
+    background-color: #ff4b4b;
     color: white;
 }
 
 .menu .nav-item .nav-link.active[data-v-4323f8ce] {
-    background-color: #2696bd;
+    background-color: #ff4b4b;
 }
 .menu .nav-item .nav-link.active[data-v-4323f8ce] {
-    background-color: #2696bd;
+    background-color: #ff4b4b;
 }
 
 .st-dt {
-    border-bottom-color: #2696bd;
+    border-bottom-color: #ff4b4b;
 }
 
 .st-ds {
-    border-top-color: #2696bd;
+    border-top-color: #ff4b4b;
 }
 
 .st-dr {
-    border-right-color: #2696bd;
+    border-right-color: #ff4b4b;
 }
 
 .st-dq {
-    border-left-color: #2696bd;
+    border-left-color: #ff4b4b;
 }
 
 .st-dt {
-    border-bottom-color: #2696bd;
+    border-bottom-color: #ff4b4b;
 }
 
 .st-ds {
-    border-top-color: #2696bd;
+    border-top-color: #ff4b4b;
 }
 
 .st-dr {
-    border-right-color: #2696bd;
+    border-right-color: #ff4b4b;
 }
 
 .st-dq {
-    border-left-color: #2696bd;
+    border-left-color: #ff4b4b;
 }
 .st-g1::after {
-    background-color: #2696bd;
+    background-color: #ff4b4b;
 }
 :root {
-    --primary-color: #2696bd;
+    --primary-color: #ff4b4b;
     --background-color: #ffffff;
     --secondary-background-color: #f0f2f6;
     --text-color: #31333F;

@@ -6,7 +6,6 @@ import csv
 from scipy import stats
 from scipy.stats import norm
 from scipy.stats import skew
-from pandas_profiling import ProfileReport
 from pandas import json_normalize
 import numpy as np 
 import pandas as pd 

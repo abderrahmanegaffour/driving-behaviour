@@ -245,8 +245,8 @@ if selected == "Driver Analyses":
     mylabels = ["Normal Behaiviour", "Good Behaiviour", "Bad Behaiviour", "Best Behaiviour"]
     myexplode = [0.2, 0, 0.4,  0.1]
 
-    plt.pie(Tasks, labels = mylabels, explode = myexplode, shadow = True,autopct='%1.1f%%', textprops={'fontsize': 18})
-    plt.title('Relativistic circle of traject classes :',fontsize=20)
+    plt.pie(Tasks, labels = mylabels, explode = myexplode, shadow = True,autopct='%1.1f%%', textprops={'fontsize': 14})
+    plt.title('Relativistic circle of traject classes :',fontsize=14)
     print(5 * "\n")
     plt.axis('equal')
     fig = plt.show() 
@@ -262,21 +262,6 @@ if selected == "Driving behaviour":
      ''')
 
     st.sidebar.header("Select classifier")
-
-
-
-    def main():
-            st.title("Upload driver data")
-            st.subheader("Dataset")
-            data_file = st.file_uploader("Upload CSV",type=['csv'])
-            if st.button("Process"):
-                    if data_file is not None:
-                        file_details = {"Filename":data_file.name,"FileType":data_file.type,"FileSize":data_file.size}
-                        st.write(file_details)
-                        df = pd.read_csv(data_file)
-                        st.dataframe(df)
-
-    df=main()
 
 
     def user_input():

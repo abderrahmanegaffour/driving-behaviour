@@ -219,7 +219,7 @@ if selected == "Driver Analyses":
     def user_input_CHAUFFEUR():
         #CHAUFFEUR = st.text_input('',placeholder='Entrer le nom du chaffeur',key=3)
         CHAUFFEUR = st.selectbox(
-            'SELECT CHAUFFEUR',
+            'SELECT DRIVER',
             ('TEFIANI MOHAMED','KRABIA ISHAK', 'EZZINE AHMED', 'SENOUCI SID AHMED','TEFIANI KOUIDER','BENAISSA AZZEDDINE',
             'TIDJINI KHELIFA','BENCHENI LAHCEN','KRIM AHMED','BELHADJ ALI','ABBOU ABD EL KADER','NOUALA MOKHTAR',
             'BOUAMAMA AMINE','HANSALI MOHAMED','SAHRAOUI MUSTAPHA','MESTARI MOHAMED',
@@ -330,7 +330,7 @@ if selected == "Driving behaviour":
         clf = None
         if clf_name == 'SVM':
          
-            st.subheader("Le comportement du chaffeur par Machine à vecteurs de support:") 
+            st.subheader("The behavior of the driver by Support Vector Machine:") 
             st.text(predictionsSVM[0]) 
 
         #elif clf_name == 'KNN':
@@ -339,23 +339,23 @@ if selected == "Driving behaviour":
             #st.text(predictionsKNN[0]) 
 
         elif clf_name == 'GB':
-            st.subheader("Le comportement du chaffeur gradient boosting:") 
+            st.subheader("The behavior of the driver by Gradient Boosting:") 
             st.text(predictionsGB[0])
 
         elif clf_name == 'AB':  
-            st.subheader("Le comportement du chaffeur Ada Boost:") 
+            st.subheader("The behavior of the driver by Ada Boost:") 
             st.text(predictionsAB[0]) 
 
         elif clf_name == 'EXDT':  
-            st.subheader("Le comportement du chaffeur Extra DT:") 
+            st.subheader("The behavior of the driver by Extra DT:") 
             st.text(predictionsEXDT[0])  
         elif clf_name == 'RF':
       
-            st.subheader("Le comportement du chaffeur par Random Forests:") 
+            st.subheader("The behavior of the driver by Random Forests:") 
             st.text(predictionsRF[0])   
        
         else:
-            st.header("Le comportement du chaffeur par arbre de décision:") 
+            st.header("The behavior of the driver by Decision Tree:") 
             st.text(predictionsDT[0])
 
         return clf

@@ -220,9 +220,9 @@ if selected == "Driver Analyses":
         #CHAUFFEUR = st.text_input('',placeholder='Entrer le nom du chaffeur',key=3)
         CHAUFFEUR = st.selectbox(
             'SELECT CHAUFFEUR',
-            ('KRABIA ISHAK', 'EZZINE AHMED', 'SENOUCI SID AHMED','TEFIANI KOUIDER','BENAISSA AZZEDDINE',
+            ('TEFIANI MOHAMED','KRABIA ISHAK', 'EZZINE AHMED', 'SENOUCI SID AHMED','TEFIANI KOUIDER','BENAISSA AZZEDDINE',
             'TIDJINI KHELIFA','BENCHENI LAHCEN','KRIM AHMED','BELHADJ ALI','ABBOU ABD EL KADER','NOUALA MOKHTAR',
-            'BOUAMAMA AMINE','HANSALI MOHAMED','SAHRAOUI MUSTAPHA','MESTARI MOHAMED','TEFIANI MOHAMED',
+            'BOUAMAMA AMINE','HANSALI MOHAMED','SAHRAOUI MUSTAPHA','MESTARI MOHAMED',
             'TEFIANI YOUCEF','GAILI SAID','OUZAA ALI','HAMRI ABD EL KADER','DJELLAL MOHAMED','HAMIANI TAIEB',
             'NEHARI ABBES','KADDOURI BOUAZA','HAKEM LAKHDAR','BOUZIDI CHEIKH','BOUTAIBANE ABD EL KADER','ZIANE ABDELKADER',
             'SENNOUR MOHAMED ABDENACEUR','MAAZOUZ ABD EL HAK','SAHOUADJ RACHID','CHERCHAB BENDIDA',
@@ -241,12 +241,12 @@ if selected == "Driver Analyses":
         return CHAUFFEUR
     e=user_input_CHAUFFEUR()
     a=df4.loc[df4['CHAUFFER']==e]
-    Tasks = [a['NORMAL CLASSE %'].item(),a['GOOD CLASSE %'].item(),a['BAD CLASSE %'].item(),a['BEST CLASSE %'].item()]
-    mylabels = ["Normal Behaiviour", "Good Behaiviour", "Bad Behaiviour", "Best Behaiviour"]
-    myexplode = [0.2, 0, 0.4,  0.1]
+    Tasks = [a['AGRESSIVE CLASSE %'].item(),a['BAD CLASSE %'].item(),a['NORMAL CLASSE %'].item(),a['GOOD CLASSE %'].item(),a['BEST CLASSE %'].item()]
+    mylabels = ["Agressive", "Bad","Normal", "Good", "Best "]
+    myexplode = [0,0.3,0,0.1,0.1]
 
-    plt.pie(Tasks, labels = mylabels, explode = myexplode, shadow = True,autopct='%1.1f%%', textprops={'fontsize': 14})
-    plt.title('Relativistic circle of traject classes :',fontsize=14)
+    plt.pie(Tasks, labels = mylabels, explode = myexplode, shadow = True,autopct='%1.1f%%', textprops={'fontsize': 8})
+    plt.title('Relativistic circle of traject classes :',fontsize=10)
     print(5 * "\n")
     plt.axis('equal')
     fig = plt.show() 

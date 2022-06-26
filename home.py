@@ -245,7 +245,7 @@ if selected == "Driver Analyses":
     mylabels = ["Agressive", "Bad","Normal", "Good", "Best "]
     myexplode = [0,0.3,0,0.1,0.1]
 
-    plt.pie(Tasks, labels = mylabels, explode = myexplode, shadow = True,autopct='%1.1f%%', textprops={'fontsize': 8})
+    plt.pie(Tasks, labels = mylabels, explode = myexplode, shadow = True,autopct='%1.1f%%', textprops={'fontsize': 10})
     plt.title('Relativistic circle of traject classes :',fontsize=10)
     print(5 * "\n")
     plt.axis('equal')

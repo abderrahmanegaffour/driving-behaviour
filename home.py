@@ -251,6 +251,36 @@ if selected == "Driver Analyses":
     plt.axis('equal')
     fig = plt.show() 
     st.pyplot(fig)
+     df5 = pd.read_csv('driver_classes_according_type.csv', encoding='latin1' )
+
+    CHAUF=e
+    b=df5.loc[df5['CHAUFFER']==CHAUF]
+    a1=b.iloc[0]
+    c1=a1['NORMAL CLASSE %']
+    d1=a1['GOOD CLASSE %']
+    e1=a1['BAD CLASSE %']
+    f1=a1['BEST CLASSE %']
+    g1=a1['AGRESSIVE CLASSE %']
+
+    a2=b.iloc[1]
+    c2=a2['NORMAL CLASSE %']
+    d2=a2['GOOD CLASSE %']
+    e2=a2['BAD CLASSE %']
+    f2=a2['BEST CLASSE %']
+    g2=a2['AGRESSIVE CLASSE %']
+    print('nouvau: ',c1,d1,e1,f1,g1,' ancien: ',c2,d2,e2,f2,g2)
+    plt.title('Graphic columns of traject classes :',fontsize=10)
+
+    plt.bar(['NORMAL_N','GOOD_N','BAD_N','BEST_N','AGRESSIVE_N'],[c1,d1,e1,f1,g1],label='NEW',color="#8F6690",width=.8)
+    plt.bar(['NORMAL_O','GOOD_O','BAD_O','BEST_O','AGRESSIVE_O'],[c2,d2,e2,f2,g2],label='OLD',color='#C4CDD8',width=.8)
+    plt.legend()
+    plt.ylabel('POURCENTAGE %')
+    
+    fig2 = plt.show() 
+    plt.xticks(rotation=45,fontsize=6)
+    plt.yticks(rotation=45,fontsize=6)
+
+    st.pyplot(fig2)
 
 
 if selected == "Driving behaviour":

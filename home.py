@@ -251,7 +251,7 @@ if selected == "Driver Analyses":
     plt.axis('equal')
     fig = plt.show() 
     st.pyplot(fig)
-     df5 = pd.read_csv('driver_classes_according_type.csv', encoding='latin1' )
+    df5 = pd.read_csv('driver_classes_according_type.csv', encoding='latin1' )
 
     CHAUF=e
     b=df5.loc[df5['CHAUFFER']==CHAUF]

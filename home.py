@@ -274,7 +274,7 @@ if selected == "Driver Analyses":
     plt.bar(['NORMAL_N','GOOD_N','BAD_N','BEST_N','AGRESSIVE_N'],[c1,d1,e1,f1,g1],label='NEW',color="#8F6690",width=.8)
     plt.bar(['NORMAL_O','GOOD_O','BAD_O','BEST_O','AGRESSIVE_O'],[c2,d2,e2,f2,g2],label='OLD',color='#C4CDD8',width=.8)
     plt.legend()
-    plt.ylabel('POURCENTAGE %')
+    plt.ylabel('PERCENTAGE %')
     
     fig2 = plt.show() 
     plt.xticks(rotation=45,fontsize=6)

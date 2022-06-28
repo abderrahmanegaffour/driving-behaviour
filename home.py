@@ -271,8 +271,8 @@ if selected == "Driver Analyses":
     print('nouvau: ',c1,d1,e1,f1,g1,' ancien: ',c2,d2,e2,f2,g2)
     plt.title('Graphic columns of traject classes :',fontsize=10)
 
-    plt.bar(['NORMAL_N','GOOD_N','BAD_N','BEST_N','AGRESSIVE_N'],[c1,d1,e1,f1,g1],label='NEW',color="#699BCA",width=.8)
-    plt.bar(['NORMAL_O','GOOD_O','BAD_O','BEST_O','AGRESSIVE_O'],[c2,d2,e2,f2,g2],label='OLD',color='#C4CDD8',width=.8)
+    plt.bar(['NORMAL_N','GOOD_N','BAD_N','BEST_N','AGRESSIVE_N'],[c1,d1,e1,f1,g1],label='NEW CAR',color="#699BCA",width=.8)
+    plt.bar(['NORMAL_O','GOOD_O','BAD_O','BEST_O','AGRESSIVE_O'],[c2,d2,e2,f2,g2],label='OLD CAR',color='#C4CDD8',width=.8)
     plt.legend()
     plt.ylabel('PERCENTAGE %')
     

@@ -49,7 +49,7 @@ import pickle
 
 
 
-st.set_page_config(page_title='Driving behaivor',page_icon=':truck:')
+st.set_page_config(page_title='Driving behaivour',page_icon=':truck:')
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 

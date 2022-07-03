@@ -162,7 +162,7 @@ if selected == "Graphs":
 if selected == "Many traject":
     with open('style.css') as f:
      st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
-     st.write('''
+     st.header('''
      # Classification of driving journeys for several days:
      ''')   
     st.sidebar.header("Select classifier")
@@ -172,8 +172,7 @@ if selected == "Many traject":
     )
     st.subheader('')
     def main():
-        st.title("Upload driver data")
-        st.subheader("Dataset")
+        st.subheader("Upload driver data")
         data_file = st.file_uploader("Upload CSV",type=['csv'])
         if st.button("Process"):
                 if data_file is not None:
@@ -262,7 +261,7 @@ if selected == "Many traject":
 
 
 if selected == "Behaviour":
-    st.title(f" {selected}:")
+    st.title(f" {selected} of driver:")
     with open('style.css') as f:
      st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
     st.sidebar.header("Select classifier")

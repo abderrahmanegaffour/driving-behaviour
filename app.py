@@ -172,8 +172,7 @@ if selected == "Many traject":
     )
     st.subheader('')
     def main():
-        st.subheader("Upload driver data")
-        data_file = st.file_uploader("Upload CSV",type=['csv'])
+        data_file = st.file_uploader("Upload driver data",type=['csv'])
         if st.button("Process"):
                 if data_file is not None:
                     file_details = {"Filename":data_file.name,"FileType":data_file.type,"FileSize":data_file.size}

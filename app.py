@@ -163,7 +163,7 @@ if selected == "Many traject":
     with open('style.css') as f:
      st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
      st.header('''
-     # Classification of driving journeys for several days:
+     Classification of driving journeys for several days:
      ''')   
     st.sidebar.header("Select classifier")
     classifier_name = st.sidebar.selectbox(

@@ -65,7 +65,7 @@ def streamlit_menu(example=1):
         # 2. horizontal menu w/o custom style
         selected = option_menu(
             menu_title=None,  # required
-            options=["Driving behaviour","Many traject","Graphs","Driver Analyses"],  # required
+            options=["Behaviour","Many traject","Graphs","Analyses"],  # required
             icons=["bi-truck","bi-file-text", "bi-graph-up","bi-pie-chart-fill"],  # optional
             menu_icon="cast",  # optional
             default_index=0,  # optional
@@ -261,7 +261,7 @@ if selected == "Many traject":
 
 
 
-if selected == "Driving behaviour":
+if selected == "Behaviour":
     st.title(f" {selected}:")
     with open('style.css') as f:
      st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
@@ -368,7 +368,7 @@ if selected == "Driving behaviour":
                                                                                                                                                                                                                                                                                    
     '''
 
-if selected == "Driver Analyses":
+if selected == "Analyses":
     st.title(f" {selected}:")
     with open('style.css') as f:
      st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)

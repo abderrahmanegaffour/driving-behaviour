@@ -403,7 +403,7 @@ if selected == "Analyses":
     mylabels = ["Agressive", "Bad","Normal", "Good", "Best "]
     myexplode = [0,0.3,0,0.1,0.1]
 
-    plt.pie(Tasks, labels = mylabels, explode = myexplode, shadow = True,autopct='%1.1f%%', textprops={'fontsize':20})
+    plt.pie(Tasks, labels = mylabels, explode = myexplode, shadow = True,autopct='%1.1f%%', textprops={'fontsize':16})
     plt.title('Relativistic circle of traject classes :',fontsize=20)
     print(5 * "\n")
     plt.axis('equal')
@@ -431,8 +431,8 @@ if selected == "Analyses":
     print('nouvau: ',c1,d1,e1,f1,g1,' ancien: ',c2,d2,e2,f2,g2)
     plt.title('Graphic columns of traject classes :',fontsize=20)
 
-    plt.bar(['NORMAL_N','GOOD_N','BAD_N','BEST_N','AGRESSIVE_N'],[c1,d1,e1,f1,g1],label='NEW',color="#699BCA",width=.9)
-    plt.bar(['NORMAL_O','GOOD_O','BAD_O','BEST_O','AGRESSIVE_O'],[c2,d2,e2,f2,g2],label='OLD',color='#C4CDD8',width=.9)
+    plt.bar(['NORMAL_N','GOOD_N','BAD_N','BEST_N','AGRESSIVE_N'],[c1,d1,e1,f1,g1],label='NEW',color="#699BCA",width=.8)
+    plt.bar(['NORMAL_O','GOOD_O','BAD_O','BEST_O','AGRESSIVE_O'],[c2,d2,e2,f2,g2],label='OLD',color='#C4CDD8',width=.8)
     plt.legend()
     plt.ylabel('PERCENTAGE %',fontsize=20)
     
